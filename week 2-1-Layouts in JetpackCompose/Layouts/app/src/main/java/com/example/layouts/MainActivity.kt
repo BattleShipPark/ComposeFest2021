@@ -9,11 +9,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -21,6 +25,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.LocalContentAlpha
@@ -56,6 +61,40 @@ class MainActivity : ComponentActivity() {
         setContent {
             LayoutsTheme {
                 ScrollingList()
+            }
+        }
+    }
+
+    @Composable
+    fun TwoTexts(modifier: Modifier = Modifier, text1: String, text2: String) {
+        Row(modifier = modifier.height(IntrinsicSize.Min)) {
+            Text(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 4.dp)
+                    .wrapContentWidth(Alignment.Start),
+                text = text1
+            )
+
+            Divider(color = Color.Black, modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp))
+            Text(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 4.dp)
+                    .wrapContentWidth(Alignment.End),
+                text = text2
+            )
+        }
+    }
+
+    @Preview
+    @Composable
+    fun TwoTextsPreview() {
+        LayoutsTheme {
+            Surface {
+                TwoTexts(text1 = "Hi", text2 = "there")
             }
         }
     }
